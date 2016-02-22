@@ -1,6 +1,5 @@
 function HM = RecPlot(fname, radius)
     % Import the recurrence matrix and color data
-    %!!!!!!! add location to path
     fileID = fopen(fname,'r');
     cellin = textscan(fileID,' %n %n %n');
     fclose(fileID);
@@ -31,6 +30,6 @@ function HM = RecPlot(fname, radius)
     set(gca, 'YDir', 'normal', 'XTickLabel', {''}, 'YTickLabel', {''}, 'TickLength', [0,0]);
     axHd1 = get(map, 'parent');
     set(axHd1, 'CLim', [-1,radius]);
-    title([fname], 'FontSize', 13);
-    HM = map
+    title(fname, 'FontSize', 13);
+    HM = map;
 end
