@@ -33,6 +33,7 @@ title(hax, 'Figure 1: Plot of Signal f1hr5c4');
 % the arccosine of these products.
 
 [f1hr5c4W, f1hr5c4ST] = simArrayCalc(f1hr5c4);
+[f1vr5c4W, f1vr5c4ST] = simArrayCalc(f1vr5c4);
 
 %% Calculate Similarity Index ($\rho$) for a number of points at any given epsilon
 %
@@ -57,7 +58,29 @@ annotation(vecPlot, 'textbox',dim,'String',str,'FitBoxToText','on');
 
 f1hr5c4SI %#ok<NOPTS>
 
+%% Compare bipole orientations
+% Intuitively, signals from bipoles oriented parallel to the direction of
+% wavefront travel should be narrower and sharper than signals from
+% perpendicular bipoles at the same location. Visual inspection confirms
+% this assumption.
+
+h1 = f1hr5c4W{1,2};
+v1 = f1vr5c4W{1,2};
+
+compPlot = figure('Name', 'Comparison of Bipole Orientations');
+ax1 = axes('Parent', compPlot);
+hold(ax1, 'on');
+plot(ax1, h1, 'Color', 'blue');
+plot(ax1, v1, 'Color', 'red');
+title(ax1, 'Figure 3: Plot of First Waveform at R5 C4');
+legend('Horizontal Bipole','Vertical Bipole');
+hold(ax1, 'off');
+
+% Questionably interesting numbers about this waveform:
+h1t = trapz(h1);
+h1ta = trapz(abs(h1));
+v1t = trapz(v1); 
+v1ta = trapz(abs(v1));
+
 %% Next on the to-do list:
-% * Clean up above section
-% * Lay fresh eyes on code to simplify
 % * Add blanking functionality to code

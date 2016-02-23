@@ -14,20 +14,18 @@ function [diffMatrixH, diffMatrixV] = diffCalculator(inMatrix)
     
     % Produce bipole data 
     for i = 1:outDimD;
-        diffMatrixH(:, :, i) = i;
-        diffMatrixV(:, :, i) = i;
         
         % Horizontal bipole data 
         for j = 1:outDimHR;
-            for k = 2:outDimHC;
-                diffMatrixH(j, k, i) = inMatrix(j, k+1, i) - inMatrix(j, k, i);
+            for k = 1:outDimHC;
+                diffMatrixH(j, k, i) = inMatrix(j, k, i) - inMatrix(j, k, i);
             end
         end
         
         % Vertical bipole data
-        for j = 2:outDimVC;
-            for k = 1:outDimVR;
-                diffMatrixV(k, j, i) = inMatrix(k+1, j, i) - inMatrix(k, j, i);
+        for j = 1:outDimVR;
+            for k = 1:outDimVC;
+                diffMatrixV(j, k, i) = inMatrix(j, k, i) - inMatrix(j, k, i);
             end
         end
     end
