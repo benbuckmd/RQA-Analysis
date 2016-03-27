@@ -1,5 +1,4 @@
-% Function identifies barycenters of input waveform using method described
-% by Ravelli et al
+% Function identifies barycenters of input waveform using Ravelli's method
 function bctrs = barycenterCalc(inSignal)
     % Initialize variables
     inDim = size(inSignal);
