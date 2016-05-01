@@ -1,4 +1,7 @@
 function [diffMatrixH, diffMatrixV] = diffCalculator(inMatrix)
+    % Computes matricies of differences (horizontal and vertical) given an
+    % input matrix. 
+    
     % Initialize variables and matrices
     inDim = size(inMatrix);
     inDimD = inDim(3); % Matrix depth
@@ -18,16 +21,19 @@ function [diffMatrixH, diffMatrixV] = diffCalculator(inMatrix)
         % Horizontal bipole data 
         for j = 1:outDimHR;
             for k = 1:outDimHC;
-                diffMatrixH(j, k, i) = inMatrix(j, k, i) - inMatrix(j, k, i);
+                diffMatrixH(j, k, i) = inMatrix(j, k+1, i) - inMatrix(j, k, i);
             end
         end
         
         % Vertical bipole data
         for j = 1:outDimVR;
             for k = 1:outDimVC;
-                diffMatrixV(j, k, i) = inMatrix(j, k, i) - inMatrix(j, k, i);
+                diffMatrixV(j, k, i) = inMatrix(j+1, k, i) - inMatrix(j, k, i);
             end
         end
     end
-%     export generated dataset    
+%     export generated dataset   
+
+%   diffMatrixH = squeeze(diffMatrixH(1,1,:));
+%   diffMatrixV = squeeze(diffMatrixV(1,1,:));
 end
